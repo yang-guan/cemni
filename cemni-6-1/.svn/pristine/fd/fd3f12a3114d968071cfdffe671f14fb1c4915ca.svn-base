@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="permission" extends="ejb-default" namespace="/permission">
+		<action name="AuthGroup_list" class="com.huiju.permission.AuthGroupAction" method="list">
+			<result name="list">/WEB-INF/content/permission/AuthGroup_list.jsp</result>
+		</action>
+		<action name="*_*" class="com.huiju.permission.{1}Action" method="{2}">
+			<result name="list">/WEB-INF/content/common/CommModel_list.jsp</result>
+		</action>
+	</package>
+
+</struts>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="notifyset" extends="ejb-default" namespace="/sm/notifyset">
+		<action name="NotifySet_list" class="com.huiju.application.e.sm.notifyset.action.NotifySetAction" method="list">
+			<result name="list">/WEB-INF/content/sm/notifyset/NotifySet_list.jsp</result>
+		</action>
+		<action name="*_*" class="com.huiju.application.e.sm.notifyset.action.{1}Action" method="{2}">
+			<result name="list">/WEB-INF/content/common/CommModel_list.jsp</result>
+		</action> 
+	</package>
+</struts>

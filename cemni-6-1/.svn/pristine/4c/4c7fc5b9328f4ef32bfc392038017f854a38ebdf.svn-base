@@ -1,0 +1,4 @@
+struts.multipart.saveDir = /tmp 
+struts.multipart.maxSize = 125829120
+struts.i18n.encoding = UTF-8
+struts.devMode = false

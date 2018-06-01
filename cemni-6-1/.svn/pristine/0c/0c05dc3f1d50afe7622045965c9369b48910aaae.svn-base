@@ -1,0 +1,35 @@
+package com.huiju.report.activityvalue.logic;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+import com.huiju.common.sql.entity.Sql;
+import com.huiju.module.data.eao.GenericEao;
+import com.huiju.module.data.logic.GenericLogicImpl;
+import com.huiju.report.activityvalue.eao.ActivityValueEaoLocal;
+
+@Stateless(mappedName = "ActivityValueBean")
+@SuppressWarnings("rawtypes")
+public class ActivityValueBean extends GenericLogicImpl<Sql, Long> implements ActivityValueRemote {
+    @EJB
+    private ActivityValueEaoLocal activityValueEao;
+
+    @Override
+    protected GenericEao<Sql, Long> getGenericEao() {
+        return activityValueEao;
+    }
+
+    @Override
+    public Map report(Map searchParam) {
+        return activityValueEao.report(searchParam);
+    }
+
+    @Override
+    public List qryRepAct(Map searchParam) {
+        return activityValueEao.qryRepAct(searchParam);
+    }
+
+}

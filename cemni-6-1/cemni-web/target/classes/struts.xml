@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	  "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	  "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="ejb-default" extends="huiju-default" namespace="/">
+		<interceptors>
+			<interceptor name="authorization" class="com.huiju.module.web.interceptor.AuthorizationInterceptor">
+				<param name="urls">
+					/index = anon
+					/touch = anon
+					/execute = anon
+					/loadParams = anon
+					/login = anon
+					/logout = anon
+
+					/loadModule = authc
+					/portal/* = authc
+					/sys/User_changePassword = authc
+					/sys/User_checkPassword = authc
+				</param>
+				<param name="urlExtensions">.action</param>
+			</interceptor>
+			<interceptor-stack name="appStack">
+				<interceptor-ref name="authorization" />
+				<interceptor-ref name="store">
+					<param name="operationMode">AUTOMATIC</param>
+				</interceptor-ref>
+				<interceptor-ref name="paramsPrepareParamsStack" />
+				<interceptor-ref name="logging" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="appStack" />
+
+		<global-results>
+			<result name="list">/WEB-INF/content/common/CommModel_list.jsp</result>
+			<result name="error">/common/exception.jsp</result>
+			<result name="notright" type="redirect">/common/notright.jsp</result>
+		</global-results>
+
+		<!-- 公共类 -->
+		<action name="Common_*" class="com.huiju.common.CommonAction" method="{1}" />
+
+		<action name="IndividCust_*" class="com.huiju.archive.individcust.IndividCustAction" method="{1}" />
+		<action name="GroupCust_*" class="com.huiju.archive.groupcust.GroupCustAction" method="{1}" />
+		<action name="Franchisee_*" class="com.huiju.archive.franchisee.FranchiseeAction" method="{1}" />
+		<action name="Supplier_*" class="com.huiju.archive.supplier.SupplierAction" method="{1}" />
+		<action name="Channel_*" class="com.huiju.archive.channel.ChannelAction" method="{1}" />
+		<action name="Partner_*" class="com.huiju.archive.partner.PartnerAction" method="{1}" />
+
+		<!-- 积分等级管理 -->
+		<action name="GradeRule_*" class="com.huiju.integral.GradeRuleAction" method="{1}" />
+		<action name="CustInteAdj_*" class="com.huiju.integral.CustInteAdjAction" method="{1}" />
+		<action name="CustGradeAdj_*" class="com.huiju.integral.CustGradeAdjAction" method="{1}" />
+		<action name="GroupInteAdj_*" class="com.huiju.integral.GroupInteAdjAction" method="{1}" />
+		<action name="GroupGradeAdj_*" class="com.huiju.integral.GroupGradeAdjAction" method="{1}" />
+		<action name="CustAdjHis_*" class="com.huiju.integral.CustAdjHisAction" method="{1}" />
+		<action name="CustGradeAdjHis_*" class="com.huiju.integral.CustGradeAdjHisAction" method="{1}" />
+
+		<action name="RightMaint_*" class="com.huiju.afterservice.rightmaint.RightMaintAction" method="{1}" />
+		<action name="BusiRegist_*" class="com.huiju.afterservice.busiregist.BusiRegistAction" method="{1}" />
+		<action name="CallRegist_*" class="com.huiju.afterservice.callregist.CallRegistAction" method="{1}" />
+		<action name="TelVisit_*" class="com.huiju.afterservice.telvisit.TelVisitAction" method="{1}" />
+		<action name="UndoVisit_*" class="com.huiju.afterservice.undovisit.UndoVisitAction" method="{1}" />
+		<action name="TelVisitRecord_*" class="com.huiju.afterservice.telvisitrecord.TelVisitRecordAction" method="{1}" />
+		<action name="TelVisitedRd_*" class="com.huiju.afterservice.telvisitrecord.TelVisitedRdAction" method="{1}" />
+
+
+		<action name="Activity_*" class="com.huiju.actment.activity.ActivityAction" method="{1}" />
+		<action name="Templatement_*" class="com.huiju.actment.templatement.TemplatementAction" method="{1}" />
+		<action name="JudgeAct_*" class="com.huiju.actment.judge.JudgeActAction" method="{1}" />
+		<action name="Competitor_*" class="com.huiju.competitor.CompetitorAction" method="{1}" />
+		<action name="YearTarget_*" class="com.huiju.salesment.yeartarget.YearTargetAction" method="{1}" />
+		<action name="ScaleTarget_*" class="com.huiju.salesment.scaletarget.ScaleTargetAction" method="{1}" />
+		<action name="DesignerTarget_*" class="com.huiju.salesment.designertarget.DesignerTargetAction" method="{1}" />
+		<!-- 合同管理 -->
+		<action name="Contract_*" class="com.huiju.contract.ContractAction" method="{1}" />
+		<action name="ContractTerms_*" class="com.huiju.contract.ContractTermsAction" method="{1}" />
+		<action name="SalesmanAnalyze_*" class="com.huiju.expandbusi.salesmananalyze.SalesmanAnalyzeAction" method="{1}" />
+		<action name="Agentanalyze_*" class="com.huiju.expandbusi.agentanalyze.AgentanalyzeAction" method="{1}" />
+		<action name="FranchiseeAudit_*" class="com.huiju.expandbusi.franchiseeaudit.FranchiseeAuditAction" method="{1}" />
+		<action name="FranchiseeValue_*" class="com.huiju.expandbusi.franchiseevalue.FranchiseeValueAction" method="{1}" />
+		<action name="FranchiseeProfit_*" class="com.huiju.expandbusi.franchiseeprofit.FranchiseeProfitAction" method="{1}" />
+		<action name="IndividCompAnalyze_*" class="com.huiju.expandbusi.individcompanalyze.IndividCompAnalyzeAction" method="{1}" />
+		<action name="MemCompAnalyze_*" class="com.huiju.expandbusi.memcompanalyze.MemCompAnalyzeAction" method="{1}" />
+
+		<!-- 短信管理 -->
+		<action name="Sms_*" class="com.huiju.sms.SmsAction" method="{1}" />
+		<action name="SmsLog_*" class="com.huiju.sms.SmsLogAction" method="{1}" />
+
+		<!-- 控制台 -->
+		<action name="Dict_*" class="com.huiju.console.DictAction" method="{1}" />
+		<action name="Org_*" class="com.huiju.console.OrgAction" method="{1}">
+			<result name="list">/js/console/org/org.jsp</result>
+		</action>
+		<action name="OrgExt_*" class="com.huiju.console.OrgExtAction" method="{1}">
+			<result name="list">/js/console/orgext/orgext.jsp</result>
+		</action>
+		<action name="Store_*" class="com.huiju.console.StoreAction" method="{1}" />
+		<action name="User2stat2org_*" class="com.huiju.console.User2stat2orgAction" method="{1}" />
+		<action name="Sql_*" class="com.huiju.common.SqlAction" method="{1}" />
+
+		<!-- 接口 -->
+		<!-- 接口日志 -->
+		<action name="InterLog_*" class="com.huiju.interlog.InterLogAction" method="{1}" />
+		<!-- 售后服务 -->
+		<action name="AfterServ_*" class="com.huiju.inter.AfterServAction" method="{1}" />
+		<!-- 销售订单 -->
+		<action name="SaleOrder_*" class="com.huiju.inter.SaleOrderAction" method="{1}" />
+		<!-- pos单 -->
+		<action name="PosOrder_*" class="com.huiju.inter.PosOrderAction" method="{1}" />
+
+		<!-- 报表 -->
+		<action name="RepActivity_*" class="com.huiju.report.activity.RepActivityAction" method="{1}" />
+		<action name="ActivityValue_*" class="com.huiju.report.activityvalue.ActivityValueAction" method="{1}" />
+		<action name="MemberGrade_*" class="com.huiju.report.membergrade.MemberGradeAction" method="{1}" />
+		<action name="ReviewTask_*" class="com.huiju.report.reviewtask.ReviewTaskAction" method="{1}" />
+		<action name="CustGradeStandard_*" class="com.huiju.report.custgradestandard.CustGradeStandardAction" method="{1}" />
+		<action name="SalesTarget_*" class="com.huiju.report.salestarget.SalesTargetAction" method="{1}" />
+		<action name="IssueTrack_*" class="com.huiju.report.issuetrack.IssueTrackAction" method="{1}" />
+		<action name="ReviewContent_*" class="com.huiju.report.reviewcontent.ReviewContentAction" method="{1}" />
+		<!--
+		<action name="MemSources_*" class="com.huiju.report.membersource.MemSourcesAction" method="{1}" />
+		-->
+		<action name="FansTrans_*" class="com.huiju.report.fanstrans.FansTransAction" method="{1}" />
+		<action name="MemSources_*" class="com.huiju.report.membersource.MemSourcesAction" method="{1}" />
+
+
+		<!-- 附件上传 -->
+		<action name="File_*" class="com.huiju.common.StdFileAction" method="{1}" />
+	</package>
+	<include file="/struts-sm-permission.xml"></include>
+	<include file="/struts-notify.xml"></include>
+</struts>

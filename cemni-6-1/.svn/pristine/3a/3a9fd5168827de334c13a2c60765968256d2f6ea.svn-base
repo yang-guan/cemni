@@ -1,0 +1,112 @@
+package com.huiju.report.activityvalue;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+import javax.ejb.EJB;
+
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
+import com.huiju.module.util.CollectionUtils;
+import com.huiju.module.web.action.BaseAction;
+import com.huiju.module.web.util.WebUtils;
+import com.huiju.report.activityvalue.logic.ActivityValueRemote;
+
+@SuppressWarnings({ "unchecked", "rawtypes" })
+public class ActivityValueAction extends BaseAction<Object, String> {
+    private static final long serialVersionUID = 1L;
+    @EJB
+    private ActivityValueRemote appLogic;
+
+    public String init() throws Exception {
+        jsPath.add("/js/report/activityvalue/Q.activity.value.js");
+
+        String[] authorities = { "D_ACTIVITYVALUE_LIST", "D_ACTIVITYVALUE_EXPORT", "D_ACTIVITYVALUE_SEARCH" };
+        permissions = this.checkPermissions(authorities);
+        return LIST;
+    }
+
+    public void getJson() {
+        Map searchParam = WebUtils.getParametersStartingWith(request);
+        searchParam.put("start", start);
+        searchParam.put("limit", limit);
+        Map rsMap = appLogic.report(searchParam);
+        renderJson(rsMap);
+    }
+
+    public void export() throws Exception {
+        response.setContentType("application/vnd.ms-excel");
+        response.setHeader("content-disposition", "attachment;filename=ActValueAnalysis.xls");
+        HSSFWorkbook wb = null;
+
+        try {
+            wb = new HSSFWorkbook();
+            HSSFSheet sheet = wb.createSheet("活动价值分析");
+            sheet.createFreezePane(0, 1);// 冻结首行
+            sheet.setDefaultColumnWidth(13);// 默认宽度
+
+            HSSFCellStyle timeCellStyle = wb.createCellStyle();
+            timeCellStyle.setDataFormat(wb.createDataFormat().getFormat("yyyy-MM-dd"));
+
+            sheet.setColumnWidth(0, 30 * 256);
+            sheet.setColumnWidth(1, 25 * 256);
+            sheet.setColumnWidth(2, 10 * 256);
+            sheet.setColumnWidth(3, 15 * 256);
+            sheet.setColumnWidth(4, 15 * 256);
+            sheet.setColumnWidth(5, 15 * 256);
+            sheet.setColumnWidth(6, 15 * 256);
+
+            HSSFRow row0 = sheet.createRow(0);
+            row0.createCell(0).setCellValue("活动门店");
+            row0.createCell(1).setCellValue("活动起止时间");
+            row0.createCell(2).setCellValue("销售件数");
+            row0.createCell(3).setCellValue("金额");
+            row0.createCell(4).setCellValue("新会员人数");
+            row0.createCell(5).setCellValue("老会员人数");
+            row0.createCell(6).setCellValue("fans产生人数");
+            row0.createCell(7).setCellValue("总人数");
+            row0.createCell(8).setCellValue("成本");
+            row0.createCell(9).setCellValue("投入产生比");
+            row0.createCell(10).setCellValue("累计珠宝折算额");
+            row0.createCell(11).setCellValue("成本总人数比");
+            row0.createCell(12).setCellValue("成本fans人数比");
+
+            List<Map> rsList = appLogic.qryActVal(WebUtils.getParametersStartingWith(request));
+            if (!CollectionUtils.isEmpty(rsList)) {
+                for (int i = 0; i < rsList.size(); i++) {
+                    HSSFRow row = sheet.createRow(i + 1);
+                    Map map = rsList.get(i);
+                    row.createCell(0).setCellValue(map.get("storeName").toString());
+                    row.createCell(1).setCellValue(map.get("period").toString());
+                    row.createCell(2).setCellValue(map.get("goodsCnt").toString());
+                    row.createCell(3).setCellValue(map.get("actuaSaleAmount").toString());
+                    row.createCell(4).setCellValue(map.get("newMemberNum").toString());
+                    row.createCell(5).setCellValue(map.get("oldMemberNum").toString());
+                    row.createCell(6).setCellValue(map.get("fansMemberNum").toString());
+                    row.createCell(7).setCellValue(map.get("totalNum").toString());
+                    row.createCell(8).setCellValue(map.get("actualCost").toString());
+                    row.createCell(9).setCellValue(map.get("ratio").toString());
+                    row.createCell(10).setCellValue(map.get("jewelDiscountAmount").toString());
+                    row.createCell(11).setCellValue(map.get("costTotalNum").toString());
+                    row.createCell(12).setCellValue(map.get("fansTotalNum").toString());
+                }
+            }
+            wb.write(response.getOutputStream());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (wb != null) {
+                try {
+                    wb.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+}
