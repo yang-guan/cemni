@@ -1,0 +1,42 @@
+body {
+	background: #f1f6f8;
+	font: 14px arial, simsun, mingliu, arial, helvetica
+}
+
+.main {
+	left: 50%;
+	margin: -163px 0px 0px -240px;
+	width: 480px;
+	position: absolute;
+	top: 50%;
+	height: 326px
+}
+
+.copyright {
+	color: #98bcca;
+	text-align: center
+}
+
+.errormsg {
+	left: 180px;
+	top: 100px;
+	width: 250px;
+	position: relative;
+	text-align: center;
+	font: 18px arial, simsun, mingliu, arial, helvetica;
+	font-weight:bold;
+	color: red;
+}
+
+.tip1 {
+	left: 90px;
+	top: 180px;
+	width: 300px;
+	position: relative;
+	text-align: center;
+}
+
+.c1 {
+	margin-left: 10px;
+	color: blue;
+}

@@ -1,0 +1,40 @@
+body {
+	background: #f1f6f8;
+	font: 12px/2.4em arial, simsun, mingliu, arial, helvetica
+}
+
+.main {
+	left: 50%;
+	margin: -163px 0px 0px -240px;
+	width: 480px;
+	position: absolute;
+	top: 50%;
+	height: 326px
+}
+
+.copyright {
+	color: #98bcca;
+	text-align: center
+}
+
+.errormsg {
+	left: 90px;
+	top: 30px;
+	width: 300px;
+	position: relative;
+	text-align: center;
+	color: red;
+}
+
+.tip1 {
+	left: 90px;
+	top: 210px;
+	width: 300px;
+	position: relative;
+	text-align: center;
+}
+
+.c1 {
+	margin-left: 10px;
+	color: blue;
+}

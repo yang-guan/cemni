@@ -1,0 +1,12 @@
+
+td.ux-grid-hd-group-cell {
+    background: url(../../../resources/images/default/grid/grid3-hrow.gif) repeat-x bottom;
+}
+
+td.ux-grid-hd-group-cell .x-grid3-hd-checker {display:none;}  
+  
+.col-grid td {  
+    -webkit-box-sizing:border-box;  
+    -moz-box-sizing:border-box;  
+    box-sizing:border-box;  
+} 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd" version="6">
+  <display-name>cemni-ear</display-name>
+  <module>
+    <ejb>cemni-ejb-0.0.1-SNAPSHOT.jar</ejb>
+  </module>
+  <module>
+    <web>
+      <web-uri>cemni-web-0.0.1-SNAPSHOT.war</web-uri>
+      <context-root>/cemni-web</context-root>
+    </web>
+  </module>
+  <module>
+    <ejb>module-fs-ejb-1.0.7.jar</ejb>
+  </module>
+  <module>
+    <ejb>module-notify-ejb-1.0.7.jar</ejb>
+  </module>
+  <module>
+    <ejb>module-mail-1.0.7.jar</ejb>
+  </module>
+  <module>
+    <ejb>module-sms-1.0.7.jar</ejb>
+  </module>
+  <module>
+    <ejb>module-message-plugin-1.0.7.jar</ejb>
+  </module>
+  <library-directory>lib</library-directory>
+</application>

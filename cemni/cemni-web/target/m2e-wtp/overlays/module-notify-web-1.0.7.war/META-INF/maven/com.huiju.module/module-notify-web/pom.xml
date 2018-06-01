@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.huiju.module</groupId>
+    <artifactId>module-notify</artifactId>
+    <version>1.0.7</version>
+  </parent>
+  <artifactId>module-notify-web</artifactId>
+  <packaging>war</packaging>
+  <name>Neusoft Huiju :: Nofity WEB</name>
+  <dependencies>
+    <dependency>
+      <groupId>com.huiju.module</groupId>
+      <artifactId>module-notify-ejb</artifactId>
+      <version>${project.version}</version>
+      <type>ejb</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.huiju.module</groupId>
+      <artifactId>module-web</artifactId>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+</project>

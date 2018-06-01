@@ -1,0 +1,59 @@
+html, body {
+	background-color: #42A5E6;
+	font-size:12px;
+    font-family: Verdana, Arial,Vrinda,Tahoma,"宋体";
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+    overflow: hidden;
+    height: 100%;
+}
+*{font-size:12px;font-family:'宋体'}
+.input{
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    color: #000000;
+    font-family: verdana, tahoma, sans-serif;
+    font-size: 0.95em;
+}
+.username{
+    background-image:url(../images/username.gif);
+	background-position: 1px 1px;
+	background-repeat:no-repeat;
+	padding-left:20px;
+	height:20px;
+	FONT-SIZE: 12px;}
+.password{
+    background-image:url(../images/password.gif);
+	background-position: 1px 1px;
+	background-repeat:no-repeat;
+	padding-left:20px;
+	height:20px;
+	FONT-SIZE: 12px;}
+.yzm{
+    background-image:url(../images/warning.gif);
+	background-position: 1px 1px;
+	background-repeat:no-repeat;
+	padding-left:20px;
+	height:20px;
+	FONT-SIZE: 12px;
+}
+
+.style4 {
+	font-family: verdana, tahoma, sans-serif;
+	FONT-SIZE: 14px;
+	font-weight: bold;
+	color: #172169;
+}
+.style6 {font-size: 12px; color: #172169; }
+.bottom {font-family: verdana, tahoma, sans-serif; FONT-SIZE: 14px; font-weight: bold; color: #172169; }
+.style2 {font-family: verdana, tahoma, sans-serif; FONT-SIZE: 10px; font-weight: bold; color: #172169; }
+.style12 {font-family: verdana, tahoma, sans-serif; FONT-SIZE: 11px; font-weight: bold; color: #172169; }
+.style9 {font-size: 12px; font-family: "宋体"}
+
+.btn_letter {
+	BORDER-LEFT-COLOR: #7b9ebd; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#ffffff, EndColorStr=#DDDCDC); BORDER-BOTTOM-COLOR: #5c08b2; COLOR: #075bc3; BORDER-TOP-COLOR: #7b9ebd; BORDER-RIGHT-COLOR: #5c08b2
+}
+.btn_num {
+	BORDER-LEFT-COLOR: #7ebf4f; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#B3D997); BORDER-BOTTOM-COLOR: #7ebf4f; COLOR: black; BORDER-TOP-COLOR: #7ebf4f; BORDER-RIGHT-COLOR: #7ebf4f
+}
